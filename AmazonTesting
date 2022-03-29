@@ -1,0 +1,55 @@
+                                                                                                                    
+import java.util.concurrent.TimeUnit;                                                                               
+                                                                                                                    
+import org.openqa.selenium.By;                                                                                      
+import org.openqa.selenium.WebDriver;                                                                               
+import org.openqa.selenium.WebElement;                                                                              
+import org.openqa.selenium.chrome.ChromeDriver;                                                                     
+import org.openqa.selenium.support.ui.Select;                                                                       
+                                                                                                                    
+                                                                                                                    
+public class SeleniumFirstTest {                                                                                    
+	WebDriver driver;                                                                                               
+	WebElement searchbox;                                                                                           
+                                                                                                                    
+	                                                                                                                
+	public void launchBrowser() {                                                                                   
+		System.setProperty("webdriver.chrome.driver","/Users/uhunmwaghoosamagbemichael/Downloads/chromedriver");    
+		driver = new ChromeDriver();                                                                                
+		driver.manage().timeouts().implicitlyWait(12,TimeUnit.SECONDS);                                             
+		driver.get("https://www.amazon.ca");                                                                        
+	    driver.findElement(By.xpath("//span[text()='Account & Lists']")).click();                                   
+		                                                                                                            
+                                                                                                                    
+		driver.findElement(By.id("ap_email")).sendKeys("joe.u911@gmail.com");                                       
+		driver.findElement(By.xpath("//*[contains(@class, 'a-button-input')]")).click();                            
+		driver.findElement(By.xpath("//*[@id='ap_password']")).sendKeys("Playgolf@2010");                           
+		driver.findElement(By.id("signInSubmit")).click();                                                          
+		                                                                                                            
+		searchbox = driver.findElement(By.id("twotabsearchtextbox"));                                               
+		driver.manage().window().maximize();                                                                        
+		searchbox.sendKeys("alexa");                                                                                
+		searchbox.submit();                                                                                         
+		driver.findElement(By.linkText("Echo Dot (3rd gen) - Smart speaker with Alexa - Charcoal")).click();        
+		                                                                                                            
+		Select quantity = new Select(driver.findElement(By.cssSelector("#selectQuantity #quantity")));              
+		quantity.selectByIndex(1);                                                                                  
+		                                                                                                            
+		driver.findElement(By.xpath("//*[@id='add-to-cart-button']")).click();                                      
+		driver.findElement(By.xpath("//*[@id='a-autoid-3']//*[contains(@class, 'a-button-input')]")).click();       
+		//driver.findElement(By.id("signInSubmit")).click();                                                        
+		//driver.findElement(By.id("signInSubmit")).click();                                                        
+		                                                                                                            
+		                                                                                                            
+	}                                                                                                               
+	public static void main(String[] args) {                                                                        
+		                                                                                                            
+		SeleniumFirstTest obj = new SeleniumFirstTest();                                                            
+		obj.launchBrowser();                                                                                        
+		                                                                                                            
+		                                                                                                            
+                                                                                                                    
+	}                                                                                                               
+                                                                                                                    
+}                                                                                                                   
+                                                                                                                    
